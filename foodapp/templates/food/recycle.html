@@ -1,0 +1,72 @@
+{% extends "food/base.html" %}
+{% block title %}
+Recycle
+{% endblock title %}
+{% block contains %}
+  
+<h1 class="text-center">Recycle</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Full name</th>
+        <th scope="col">email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">message</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in data %}
+
+      
+   
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{i.name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone}}</td>
+        <td>{{i.message}}</td>
+        <td>
+           <button type="btn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash"></i>Restore</button> 
+
+          <!-- modal section starts -->
+         
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Restore Data</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{% url 'restore' i.id %}">
+        <div class="modal-body">
+         DO you want to restore {{i.name}} Data?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Restore</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+          <!-- modal section ends -->
+        </td>
+      </tr>
+       {% endfor %}
+    </tbody>
+  </table>
+
+<script>
+    const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', () => {
+        myInput.focus()
+})
+</script>
+{% endblock contains %}

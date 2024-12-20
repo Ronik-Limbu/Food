@@ -1,0 +1,69 @@
+{% extends "food/base.html" %}
+{% block title %}
+Update
+  
+{% endblock title %}
+Update
+{% block contains %}
+
+<div class="container">
+<div class="row">
+<div class="col">
+<h1><b class="text-danger">Update</b> information</h1>
+<form method="post" action="{% url 'update_form' data.id %}">
+    {% csrf_token %}
+    <div class="row g-3 my-3">
+      <div class="col">
+        <label class="form-label">Full Name</label>
+        <input type="text" value={{data.name}} name="name" class="form-control" placeholder="Full name" aria-label="Full name">
+      </div>
+    </div>
+
+      <div class="mb-3 mt-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+      <input type="email" value={{data.email}} name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="Choose" class="form-label">What Can we do for you</label>
+      <select id="Choose" class="form-select">
+        <option>Choose</option>
+        <option>jhol Momo</option>
+        <option>Sea Momo</option>
+        <option>Vintage Momo</option>
+      </select>
+    </div>
+
+    <div class="col">
+      <label class="form-label">phone number</label>
+      <input type="number" value={{data.phone}} name="phone" class="form-control" placeholder="number" aria-label="number">
+    </div>
+    <div class="form-floating mt-3">
+      <label for="floatingTextarea">Messages</label>
+      <textarea name="message" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" >{{data.message}}</textarea>
+      
+    </div>
+    
+    <div class="button-container my-2">
+     <input type="submit" value="Submit" class="send-button">
+     <a href="{% url 'read' %}">Show all the form information in tables
+    </a>
+   </div>
+  
+   {% if messages %}
+   {% for message in messages %}
+   <div class="alert alert-success alert-dismissible fade show" role="alert">
+     <strong></strong>{{message}}
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+     
+   {% endfor %}
+     
+   {% endif %}
+    
+  </form>
+  </div>
+  </div>
+  </div>
+
+{% endblock contains %}

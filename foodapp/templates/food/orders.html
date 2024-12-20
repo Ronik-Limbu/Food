@@ -1,0 +1,7 @@
+<h1>Order {{ food.name }}</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="quantity">Quantity:</label>
+    <input type="number" name="quantity" min="1" required>
+    <button type="submit">Place Order</button>
+</form>

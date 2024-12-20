@@ -1,0 +1,42 @@
+{% extends "food/base.html" %}
+{% block title %}
+  Read
+{% endblock title %}
+{% block contains %}
+<div class="d-flex">
+  <h1 class="ms-auto">
+  <a href="{% url 'recycle' %}"><button class="btn btn-danger"><i class="fa-solid fa-recycle"></i>Recycle</button></a>
+
+</h1>
+</div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Full name</th>
+        <th scope="col">email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">message</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in data %}
+
+      
+   
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{i.name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone}}</td>
+        <td>{{i.message}}</td>
+        <td>
+          <a href="{% url 'update_form' i.id %}"> <button type="btn" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i>Edit</button></a> 
+          <a href="{% url 'delete' i.id %}"> <button type="btn" class="btn btn-danger"><i class="fa-solid fa-trash"></i>Delete</button></a> 
+        </td>
+      </tr>
+       {% endfor %}
+    </tbody>
+  </table>
+{% endblock contains %}

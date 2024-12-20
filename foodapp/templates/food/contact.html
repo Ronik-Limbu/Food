@@ -1,0 +1,105 @@
+{% extends "food/base.html" %}
+{% block title %}
+  contact
+{% endblock title %}
+{% load static %}
+
+{% block contains %}
+<h1 class="text-bolder text-center text-capitalize text-success">Our Contact</h1>
+<h3 class="text-uppercase text-center">get in touch</h3>
+<p class="text-center text-bold text-uppercase"><b class="text-danger">Our Friendly team</b> would love  to hear from you</p>
+<div class="container">
+  <div class="row">
+<div class="col-4">
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title text-warning"><i class="fa-solid fa-location-pin"></i>Location</h5>
+    
+    <p class="card-text">New Baneshwor -41201,<br>Kathmandu,Bagmati,Nepal</p>
+    </div>
+  </div>
+</div>
+<div class="col-4">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title text-warning"><i class="fa-solid fa-phone"></i>Phone</h5>
+      
+      <p class="card-text text-bold">Mobile: 98031047898,9883892989</p>
+      <p>Tel: 01-256555-555</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title text-warning"><i class="fa-solid fa-clock"></i>Service Time</h5>
+        
+        <p class="card-text text-bold">MON-FRI: 8 am - 8pm</p>
+        <p>SAT-SUN : closed</p>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="container my-container">
+  <div class="row">
+    <div class="col-6">
+      <img src="{% static 'images/map1.PNG' %}" class="img">
+    </div>
+    <div class="col-6">
+      <h1><b class="text-danger">Contact</b> US</h1>
+      <form method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+        <div class="row g-3 my-3">
+          <div class="col">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Full name" aria-label="Full name">
+          </div>
+        </div>
+
+          <div class="mb-3 mt-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="Choose" class="form-label">What Can we do for you</label>
+          <select id="Choose" class="form-select">
+            <option>Choose</option>
+            <option>jhol Momo</option>
+            <option>Sea Momo</option>
+            <option>Vintage Momo</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label class="form-label">phone number</label>
+          <input type="number" name="phone" class="form-control" placeholder="number" aria-label="number">
+        </div>
+        <div class="form-floating mt-3">
+          <textarea name="message" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+          <label for="floatingTextarea">Messages</label>
+        </div>
+        
+        <div class="button-container my-2">
+         <input type="submit" value="Submit" class="send-button">
+         <a href="{% url 'read' %}">Show all the form information in tables
+        </a>
+       </div>
+      
+       {% if messages %}
+       {% for message in messages %}
+       <div class="alert alert-success alert-dismissible fade show" role="alert">
+         <strong></strong>{{message}}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+         
+       {% endfor %}
+         
+       {% endif %}
+        
+      </form>
+    </div>
+</div>
+{% endblock contains %}
